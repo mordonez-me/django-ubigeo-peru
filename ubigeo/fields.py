@@ -9,14 +9,16 @@ import constant
 class UbigeoFormField(forms.MultiValueField):
 
     def __init__(self, *args, **kwargs):
-        regiones = Ubigeo.objects.filter(parent__isnull=True).order_by('name')
+        ubigeos = Ubigeo.objects.filter(parent__isnull=True)
+        regiones = ubigeos.exclude(ubigeo__startswith='9')
+        print ('regiones: ',regiones)
         if 'ubigeo' in kwargs:
             if kwargs['ubigeo'] == constant.ONLY_INTERNATIONAL:
-                regiones = regiones.filter(ubigeo__startswith='9').order_by('name')
-            elif kwargs['ubigeo'] == constant.ONLY_PERU:
-                regiones = regiones.exclude(ubigeo__startswith='9')
-        provincias = Ubigeo.objects.filter(parent=regiones[0]).order_by('name')
-        distritos  = Ubigeo.objects.filter(parent=provincias[0]).order_by('name')
+                regiones = regiones.filter(ubigeo__startswith='9')
+            elif kwargs['ubigeo'] == constant.ALL:
+                regiones = Ubigeo.objects.filter(parent__isnull=True)
+        provincias = Ubigeo.objects.filter(parent=regiones[0])
+        distritos  = Ubigeo.objects.filter(parent=provincias[0])
         self.fields = (
             ModelChoiceField(queryset=regiones),
             ModelChoiceField(queryset=provincias),

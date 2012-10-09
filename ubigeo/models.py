@@ -11,6 +11,7 @@ class Ubigeo(models.Model):
     class Meta:
         verbose_name = _(u'Ubigeo')
         verbose_name_plural = _(u'Ubigeos')
+        ordering = ['name',]
 
     def __unicode__(self):
         return u'%s' % smart_unicode(self.name)

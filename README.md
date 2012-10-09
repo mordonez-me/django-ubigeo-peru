@@ -1,13 +1,13 @@
 # Django-Ubigeo-Peru
 ------------------
 
-django-ubigeo-peru, es una app que te permitira implementar facilmente 
+django-ubigeo-peru, es una app que te permitira implementar facilmente
 los ubigeos de Perú, en tus django app.
 
 
 # Dependencias
 
-Python 
+Python
 
   * south
 
@@ -21,8 +21,8 @@ Javascript
 En tu settings.py
 
 ```python
-    INSTALLED_APPS = ( 
-        ....    
+    INSTALLED_APPS = (
+        ....
         'ubigeo',
     )
 ```
@@ -59,7 +59,7 @@ en tu forms.py:
     from ubigeo import constant
 
     class MyModelForm(form.ModelForm):
-        ubigeo = UbigeoFormFiel(ubigeo=constant.ALL)
+        ubigeo = UbigeoFormField(ubigeo=constant.ONLY_PERU)
 
         class Meta:
             model = Ubigeo
