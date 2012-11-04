@@ -11,7 +11,6 @@ class UbigeoFormField(forms.MultiValueField):
     def __init__(self, *args, **kwargs):
         ubigeos = Ubigeo.objects.filter(parent__isnull=True)
         regiones = ubigeos.exclude(ubigeo__startswith='9')
-        print ('regiones: ',regiones)
         if 'ubigeo' in kwargs:
             if kwargs['ubigeo'] == constant.ONLY_INTERNATIONAL:
                 regiones = regiones.filter(ubigeo__startswith='9')
@@ -51,7 +50,7 @@ class UbigeoFormField(forms.MultiValueField):
     def prepare_value(self, value):
         if value is None:
             value=constant.DISTRICT_DEFAULT
-        distrito = Ubigeo.objects.get(pk=value)
+        distrito = Ubigeo.objects.get(pk=value[2] if isinstance(value,list) else value)
         self.fields[1].queryset = Ubigeo.objects.filter(
                             parent=distrito.parent.parent
                             )
