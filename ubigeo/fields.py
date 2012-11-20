@@ -40,12 +40,14 @@ class UbigeoFormField(forms.MultiValueField):
             return None
 
     def clean(self, value):
-        distrito = Ubigeo.objects.get(pk=value[2])
-        self.fields[1].queryset = Ubigeo.objects.filter(
-                            parent=distrito.parent.parent
-                            )
-        self.fields[2].queryset = Ubigeo.objects.filter(parent=distrito.parent)
-        return distrito
+        if value[2]:
+            distrito = Ubigeo.objects.get(pk=value[2])
+            self.fields[1].queryset = Ubigeo.objects.filter(
+                                parent=distrito.parent.parent
+                                )
+            self.fields[2].queryset = Ubigeo.objects.filter(parent=distrito.parent)
+            return distrito
+        return None
 
     def prepare_value(self, value):
         if value is None:
