@@ -1,10 +1,13 @@
+# -*- coding: utf-8 -*-
+
 from django import forms
+from django.db import models
 from django.forms import ModelChoiceField
 from django.core.exceptions import ValidationError
 from widgets import UbigeoWidget
 from models import Ubigeo
-from django.db import models
 import constant
+
 
 class UbigeoFormField(forms.MultiValueField):
 
@@ -37,7 +40,7 @@ class UbigeoFormField(forms.MultiValueField):
     def compress(self, data_list):
         if data_list:
             return data_list[2]
-            return None
+        return None
 
     def clean(self, value):
         if value[2]:
