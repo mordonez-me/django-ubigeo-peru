@@ -1,27 +1,29 @@
 # -*- coding: utf-8 -*-
+
 import os
 from setuptools import setup, find_packages
+
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 setup(
-    name = 'django-ubigeo-peru',
-    version = '0.1',
-    url = 'https://github.com/mickymiseck/django-ubigeo-peru',
-    license = 'GPL v.3',
-    description = 'Django app para aplicaciones que requieran usar los ubigeos del Perú.',
+    name='django-ubigeo-peru',
+    version='0.1',
+    url='https://github.com/mickymiseck/django-ubigeo-peru',
+    license='GPL v.3',
+    description='Django app para aplicaciones que requieran usar los ubigeos del Perú.',
 
-    long_description = read('README.md'),
+    long_description=read('README.md'),
 
-    author = 'Miguel Angel Cumpa Asuña',
-    author_email = 'themiseck.rock@gmail.com',
+    author='Miguel Angel Cumpa Asuña',
+    author_email='themiseck.rock@gmail.com',
 
-    packages = find_packages(),
+    packages=find_packages(),
 
-    install_requires = ['setuptools'],
+    install_requires=['setuptools'],
 
-    classifiers = [
+    classifiers=[
         'Development Status :: Alpha',
         'Framework :: Django',
         'Intended Audience :: Developers',
