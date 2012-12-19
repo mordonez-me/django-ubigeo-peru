@@ -1,23 +1,26 @@
+# -*- coding: utf-8 -*-
+
 from django.forms.widgets import Select, MultiWidget
-from models import Ubigeo
+from .models import Ubigeo
+
 
 class UbigeoWidget(MultiWidget):
 
-    def __init__(self, regiones, provincias, distritos):
-        self.regiones = regiones
-        self.provincias = provincias
-        self.distritos = distritos
+    def __init__(self, regions, provinces, districts):
+        self.regions = regions
+        self.provinces = provinces
+        self.districts = districts
         widgets = (
             Select(
-                choices = self.regiones,
+                choices = self.regions,
                 attrs = {'onchange' : 'getProvincias(this.value, null, null);'}
             ),
             Select(
-                choices = self.provincias,
+                choices = self.provinces,
                 attrs = {'onchange' : 'getDistritos(this.value, null);'}
             ),
             Select(
-                choices = self.distritos
+                choices = self.districts
             )
         )
         super(UbigeoWidget, self).__init__(widgets)
