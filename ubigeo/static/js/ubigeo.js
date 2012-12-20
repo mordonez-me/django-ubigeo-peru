@@ -5,10 +5,14 @@ function getProvincias(id, value_provincia, value_distrito){
     provincias.find('option').remove();
 
     // Repopulate
-    // provincia.append("<option value='' selected>---------</option>");
+    var nullcase =  "<option value='' selected>---------</option>";
+    provincias.append(nullcase);
 
     var url = '/ubigeo/provincia/json/?region_id=' + id;
     var handler =  function(data){
+        // var nullcase =  "<option value='' selected>---------</option>";
+        provincias.append(nullcase);
+
         $.each(data, function(key, value){
             var option = "<option value='" + value.pk + "' selected>" + value.fields.name + "</option>";
             provincias.append(option);
@@ -24,10 +28,13 @@ function getDistritos(id, value_distrito){
     distritos.find('option').remove();
     
     // Repopulate
-    // distrito.append("<option value='' selected>---------</option>");
+    var nullcase =  "<option value='' selected>---------</option>";
+    distritos.append(nullcase);
     
     var url = '/ubigeo/distrito/json/?province_id=' + id;
     var handler = function(data){
+        // var nullcase =  "<option value='' selected>---------</option>";
+        distritos.append(nullcase);
         $.each(data, function(key, value){
             var option = "<option value='" + value.pk + "' selected>" + value.fields.name + "</option>";
             distritos.append(option);
