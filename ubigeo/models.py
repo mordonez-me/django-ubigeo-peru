@@ -14,9 +14,6 @@ class Ubigeo(models.Model):
     political_division = models.PositiveSmallIntegerField(choices=POLITICAL_DIVISION_CHOICES,)
     parent = models.ForeignKey('Ubigeo', null=True)
 
-    class Meta:
-        app_label = 'utils'
-
     def __unicode__(self):
         return self.qualified_name(self)
 
