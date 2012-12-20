@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from django import forms
-from django.db import models
-from django.forms import ModelChoiceField
-from django.core.exceptions import ValidationError
-from widgets import UbigeoWidget
-from models import Ubigeo
-import constant
+from .widgets import UbigeoWidget
+from .models import Ubigeo
 
 
 class UbigeoField(forms.MultiValueField):
@@ -15,6 +11,9 @@ class UbigeoField(forms.MultiValueField):
         if regions:
             provinces = Ubigeo.objects.filter(parent=regions[0])
             districts = Ubigeo.objects.filter(parent=provinces[0])
+        else:
+            provinces = []
+            districts = []
 
         self.fields = (
             forms.ModelChoiceField(queryset=regions),
