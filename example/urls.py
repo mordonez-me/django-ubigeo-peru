@@ -8,6 +8,6 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns(
     '',
-    url(r'^ubigeos/', include('ubigeo.urls')),
+    url(r'^ubigeo/', include('ubigeo.urls')),
     url(r'^', include('ubigeo_example.urls')),
 )

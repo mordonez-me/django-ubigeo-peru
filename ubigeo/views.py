@@ -7,7 +7,8 @@ from .models import Ubigeo
 
 def provincia(request):
     provincias = Ubigeo.objects.filter(
-        parent=Ubigeo.objects.get(ubigeo = request.GET['r'])).order_by('name')
+        parent=request.GET.get('region_id')
+        ).order_by('name')
     return HttpResponse(
         serializers.serialize("json",
                               provincias,
@@ -17,7 +18,8 @@ def provincia(request):
 
 def distrito(request):
     distritos = Ubigeo.objects.filter(
-        parent=Ubigeo.objects.get(ubigeo = request.GET['d'])).order_by('name')
+        parent=request.GET.get('province_id')
+        ).order_by('name')
     return HttpResponse(
         serializers.serialize("json",
                               distritos,
