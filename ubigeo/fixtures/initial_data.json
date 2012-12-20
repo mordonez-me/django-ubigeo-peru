@@ -1,7 +1,7 @@
 [
   {
     "pk": 27114,
-    "model": "utils.ubigeo",
+    "model": "ubigeo.ubigeo",
     "fields": {
       "political_division": 1,
       "name": "Amazonas",
