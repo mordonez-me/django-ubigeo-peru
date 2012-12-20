@@ -12,8 +12,8 @@ class UbigeoField(forms.MultiValueField):
             provinces = Ubigeo.objects.filter(parent=regions[0])
             districts = Ubigeo.objects.filter(parent=provinces[0])
         else:
-            provinces = []
-            districts = []
+            provinces = Ubigeo.objects.none()
+            districts = Ubigeo.objects.none()
 
         self.fields = (
             forms.ModelChoiceField(queryset=regions),
