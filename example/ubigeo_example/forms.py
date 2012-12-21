@@ -4,4 +4,4 @@ from django import forms
 from ubigeo.fields import UbigeoField
 
 class DisplayUbigeosForm(forms.Form):
-    ubigeos = UbigeoField()
+    ubigeo = UbigeoField(required=False)

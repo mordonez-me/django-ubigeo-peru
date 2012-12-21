@@ -5,10 +5,30 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </head>
 <body>
-  <form>
+  <form method="POST" action=".">
+    {% csrf_token %}
     {{ form.as_p }}
     <input type="submit">
   </form>
+  <hr>
+  <h1>Incidentes</h1>
+    {% for incident in incidents %}
+      {% if forloop.first %}
+        <table>
+          <tr>
+            <th>id</th>
+            <th>Location</th>
+          </tr>
+      {% endif %}
+          <tr>
+            <td>{{ incident.id }}</td>
+            <td>{{ incident.location.name }}</td>
+          </tr>
+          {{ location }}
+      {% if forloop.last %}
+        </table>
+      {% endif %}
+    {% endfor %}
   <script src="{{ STATIC_URL}}js/ubigeo.js"></script>
 </body>
 </html>
