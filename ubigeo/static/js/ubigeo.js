@@ -10,15 +10,20 @@ function getProvincias(id, value_provincia, value_distrito){
 
     var url = '/ubigeo/provincia/json/?region_id=' + id;
     var handler =  function(data){
-        // var nullcase =  "<option value='' selected>---------</option>";
-        provincias.append(nullcase);
 
         $.each(data, function(key, value){
-            var option = "<option value='" + value.pk + "' selected>" + value.fields.name + "</option>";
+            var option = "<option value='" + value.pk + "'>" + value.fields.name + "</option>";
             provincias.append(option);
         });
     };
     $.getJSON(url, handler);
+    
+    // Clear Districts
+    var distritos = $("#id_ubigeos_2");
+    distritos.find('option').remove();
+    var nullcase =  "<option value='' selected>---------</option>";
+    distritos.append(nullcase);
+
 }
 
 function getDistritos(id, value_distrito){
@@ -33,10 +38,9 @@ function getDistritos(id, value_distrito){
     
     var url = '/ubigeo/distrito/json/?province_id=' + id;
     var handler = function(data){
-        // var nullcase =  "<option value='' selected>---------</option>";
-        distritos.append(nullcase);
+
         $.each(data, function(key, value){
-            var option = "<option value='" + value.pk + "' selected>" + value.fields.name + "</option>";
+            var option = "<option value='" + value.pk + "'>" + value.fields.name + "</option>";
             distritos.append(option);
         });
     };

@@ -1,19 +1,8 @@
 # Django-Ubigeo-Peru
-------------------
 
-django-ubigeo-peru, es una app que te permitira implementar facilmente
-los ubigeos de Perú, en tus django app.
-
-
-# Dependencias
-
-Python
-
-  * south
-
-Javascript
-
-  * jquery
+django-ubigeo-peru, es una app que te permitira implementar facilmente los ubigeos de Perú, en tus django app.
+## Notice
+En este fork he cambiado el modelo para que no dependa el código del ubigeo puesto a que este es variante el tiempo.
 
 
 # Instalar
@@ -37,35 +26,8 @@ En tu urls.py
     )
 ```
 
+# TODO
+- Refactor Javascript functions to recieve a selector as an argument in the example aplication.
 
-# Usar
-
-
-En tu models.py:
-
-```python
-    from ubigeo.models import Ubigeo
-
-    class MyModel(models.Model):
-        name = models.CharField(max_length=120)
-        ubigeo = models.ForeignKey(Ubigeo)
-```
-
-en tu forms.py:
-
-```python
-    from ubigeo.models import Ubigeo
-    from ubigeo.fields import UbigeoFormField
-    from ubigeo import constant
-
-    class MyModelForm(form.ModelForm):
-        ubigeo = UbigeoFormField(ubigeo=constant.ONLY_PERU)
-
-        class Meta:
-            model = Ubigeo
-```
-
-Opciones:
-  * ONLY_PERU
-  * ONLY_INTERNATIONAL
-  * ALL
+# Licencia
+ver LICENSE
