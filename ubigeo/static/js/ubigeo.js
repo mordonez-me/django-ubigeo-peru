@@ -23,7 +23,6 @@ function getProvincias(id, value_provincia, value_distrito){
     distritos.find('option').remove();
     var nullcase =  "<option value='' selected>---------</option>";
     distritos.append(nullcase);
-
 }
 
 function getDistritos(id, value_distrito){

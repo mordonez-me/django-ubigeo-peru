@@ -44,7 +44,9 @@ class Ubigeo(models.Model):
     def __eq__(self, other):
         """Comparar name con name y parents
         """
-        if self.name != other.name:
+        if not other:
+            return False
+        elif self.name != other.name:
             return False
         elif (self.parent is None and other.parent is not None) or \
              (self.parent is not None and other.parent is None):
