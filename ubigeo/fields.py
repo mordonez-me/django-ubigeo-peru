@@ -24,15 +24,21 @@ class UbigeoField(forms.MultiValueField):
             forms.ModelChoiceField(
                 queryset=Ubigeo.objects.filter(
                     political_division=Ubigeo.POLITICAL_DIVISION_CHOICES.REGION
-                    )),
+                    ),
+                empty_label=u"No sé sabe",
+                required=False),
             forms.ModelChoiceField(
                 queryset=Ubigeo.objects.filter(
                     political_division=Ubigeo.POLITICAL_DIVISION_CHOICES.PROVINCE
-                    )),
+                    ),
+                empty_label=u"No sé sabe",
+                required=False),
             forms.ModelChoiceField(
                 queryset=Ubigeo.objects.filter(
                     political_division=Ubigeo.POLITICAL_DIVISION_CHOICES.DISTRICT
-                    )),
+                    ),
+                empty_label=u"No sé sabe",
+                required=False,),
             )
 
 
@@ -46,10 +52,16 @@ class UbigeoField(forms.MultiValueField):
             self.widget,
             *args)
 
-    def compress(self, data_list):
-        """Returns a single value for the given list of values.
-        The values can be assumed to be valid.
+
+    def clean(self, value):
+        """I know I shouldn't override this but, Fuck this shit.
         """
-        if data_list:
-            return data_list[-1]
-        return None
+        if value is None:
+            return None
+        v1, v2, v3 = value
+        if not v3 in (None, u''):
+            return Ubigeo.objects.get(pk=v3)
+        elif not v2 in (None, u''):
+            return Ubigeo.objects.get(pk=v2)
+        elif not v1 in (None, u''):
+            return Ubigeo.objects.get(pk=v1)
