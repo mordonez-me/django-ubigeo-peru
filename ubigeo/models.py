@@ -14,8 +14,11 @@ class Ubigeo(models.Model):
     political_division = models.PositiveSmallIntegerField(choices=POLITICAL_DIVISION_CHOICES,)
     parent = models.ForeignKey('Ubigeo', null=True)
 
-    def __unicode__(self):
+    def __repr__(self):
         return self.qualified_name(self)
+
+    def __unicode__(self):
+        return self.name
 
     @property
     def human_political_division(self,):

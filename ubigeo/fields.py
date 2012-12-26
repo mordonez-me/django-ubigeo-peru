@@ -25,19 +25,19 @@ class UbigeoField(forms.MultiValueField):
                 queryset=Ubigeo.objects.filter(
                     political_division=Ubigeo.POLITICAL_DIVISION_CHOICES.REGION
                     ),
-                empty_label=u"No sé sabe",
+                empty_label=u"",
                 required=False),
             forms.ModelChoiceField(
                 queryset=Ubigeo.objects.filter(
                     political_division=Ubigeo.POLITICAL_DIVISION_CHOICES.PROVINCE
                     ),
-                empty_label=u"No sé sabe",
+                empty_label=u"",
                 required=False),
             forms.ModelChoiceField(
                 queryset=Ubigeo.objects.filter(
                     political_division=Ubigeo.POLITICAL_DIVISION_CHOICES.DISTRICT
                     ),
-                empty_label=u"No sé sabe",
+                empty_label=u"",
                 required=False,),
             )
 
