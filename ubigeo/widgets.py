@@ -31,11 +31,11 @@ class UbigeoWidget(widgets.MultiWidget):
                 ubigeo = value
                 )
             self.widgets[1] = Select(
-                choices=((u[0], u[1]) for u in self.provincias),
+                choices=((u[0], u[1]) for u in self.provinces),
                 attrs = {'onchange' : 'getDistritos(this.value);'}
                 )
             self.widgets[2] = Select(
-                choices = ((u[0], u[1]) for u in self.distritos))
+                choices = ((u[0], u[1]) for u in self.districts))
             return (ubigeo.parent.parent.ubigeo,
                 ubigeo.parent.ubigeo,
                 ubigeo.ubigeo)
