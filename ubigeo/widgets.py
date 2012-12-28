@@ -36,9 +36,9 @@ class UbigeoWidget(widgets.MultiWidget):
                 )
             self.widgets[2] = widgets.Select(
                 choices = ((u[0], u[1]) for u in self.districts))
-            return (ubigeo.parent.parent.ubigeo,
-                ubigeo.parent.ubigeo,
-                ubigeo.ubigeo)
+            return (ubigeo.parent.parent,
+                ubigeo.parent,
+                ubigeo)
         return (None, None, None)
 
     class Media:
