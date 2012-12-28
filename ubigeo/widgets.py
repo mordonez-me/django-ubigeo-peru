@@ -30,11 +30,11 @@ class UbigeoWidget(widgets.MultiWidget):
             ubigeo = value if isinstance(value, Ubigeo) else Ubigeo.objects.get(
                 ubigeo = value
                 )
-            self.widgets[1] = Select(
+            self.widgets[1] = widgets.Select(
                 choices=((u[0], u[1]) for u in self.provinces),
                 attrs = {'onchange' : 'getDistritos(this.value);'}
                 )
-            self.widgets[2] = Select(
+            self.widgets[2] = widgets.Select(
                 choices = ((u[0], u[1]) for u in self.districts))
             return (ubigeo.parent.parent.ubigeo,
                 ubigeo.parent.ubigeo,
