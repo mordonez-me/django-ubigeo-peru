@@ -26,16 +26,25 @@ class UbigeoWidget(widgets.MultiWidget):
     def decompress(self, value):
         if value:
             ubigeo = value if isinstance(value, Ubigeo) else Ubigeo.objects.get(
-                ubigeo = value
+                pk = value
                 )
             self.widgets[1] = widgets.Select(
                 choices=((u[0], u[1]) for u in self.provinces),
                 )
             self.widgets[2] = widgets.Select(
                 choices = ((u[0], u[1]) for u in self.districts))
-            return (ubigeo.parent.parent,
-                ubigeo.parent,
-                ubigeo)
+            if ubigeo.human_political_division == 'Region':
+                return (ubigeo.id,
+                    None,
+                    None)
+            if ubigeo.human_political_division == 'Provincia':
+                return (ubigeo.parent.id,
+                    ubigeo.id,
+                    None)
+            if ubigeo.human_political_division == 'Distrito':
+                return (ubigeo.parent.parent.id,
+                    ubigeo.parent.id,
+                    ubigeo.id)
         return (None, None, None)
 
     class Media:

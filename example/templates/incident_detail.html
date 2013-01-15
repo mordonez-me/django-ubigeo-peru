@@ -22,7 +22,7 @@
       {% endif %}
           <tr>
             <td>{{ incident.id }}</td>
-            <td><a href='{% url incident_detail incident.id %}'> {{ incident.location.name }}</a></td>
+            <td>{{ incident.location.name }}</td>
             <td>{{ incident.location.human_political_division }}</td>
           </tr>
           {{ location }}
