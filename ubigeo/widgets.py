@@ -13,11 +13,9 @@ class UbigeoWidget(widgets.MultiWidget):
         _widgets = (
             widgets.Select(
                 choices = self.regions,
-                attrs = {'onchange' : 'getProvincias(this.value, null, null);'}
             ),
             widgets.Select(
                 choices = Ubigeo.objects.none(),
-                attrs = {'onchange' : 'getDistritos(this.value, null);'}
             ),
             widgets.Select(
                 choices = Ubigeo.objects.none(),
@@ -32,7 +30,6 @@ class UbigeoWidget(widgets.MultiWidget):
                 )
             self.widgets[1] = widgets.Select(
                 choices=((u[0], u[1]) for u in self.provinces),
-                attrs = {'onchange' : 'getDistritos(this.value);'}
                 )
             self.widgets[2] = widgets.Select(
                 choices = ((u[0], u[1]) for u in self.districts))
