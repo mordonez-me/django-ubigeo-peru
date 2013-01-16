@@ -39,6 +39,9 @@ class UbigeoField(forms.MultiValueField):
             self.fields[0]._get_choices(),
             self.fields[1]._get_choices(),
             self.fields[2]._get_choices(),
+            attrs_1=kwargs.get('attrs_1'),
+            attrs_2=kwargs.get('attrs_2'),
+            attrs_3=kwargs.get('attrs_3'),
             )
         super(UbigeoField, self).__init__(
             self.fields,

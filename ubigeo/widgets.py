@@ -6,19 +6,23 @@ from .models import Ubigeo
 
 class UbigeoWidget(widgets.MultiWidget):
 
-    def __init__(self, regions, provinces, districts):
+    def __init__(self, regions, provinces, districts,
+                 attrs_1=None, attrs_2=None, attrs_3=None, ):
         self.regions = regions
         self.provinces = provinces
         self.districts = districts
         _widgets = (
             widgets.Select(
                 choices = self.regions,
+                attrs=attrs_1,
             ),
             widgets.Select(
                 choices = Ubigeo.objects.none(),
+                attrs=attrs_2,
             ),
             widgets.Select(
                 choices = Ubigeo.objects.none(),
+                attrs=attrs_3,
             )
         )
         super(UbigeoWidget, self).__init__(_widgets)
