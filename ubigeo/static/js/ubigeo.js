@@ -5,7 +5,7 @@ var district_nullcase = "<option value='' selected></option>";
 
 function getProvinciasFactory(provinces_selector, districts_selector){
     return function(id, value_provincia, value_distrito){
-        var provincias = $("#id_ubigeo_1");
+        var provincias = $(provinces_selector);
 
         // clear the Provinces combobox
         provincias.find('option').remove();
@@ -24,7 +24,7 @@ function getProvinciasFactory(provinces_selector, districts_selector){
         $.getJSON(url, handler);
 
         // Clear Districts
-        var distritos = $("#id_ubigeo_2");
+        var distritos = $(district_selector);
         distritos.find('option').remove();
         distritos.append(district_nullcase);
     };
@@ -55,13 +55,13 @@ function getDistritosFactory(district_selector){
 
 
 $(document).ready(function(){
-    var getProvincias = getProvinciasFactory("#id_ubigeo_1", "#id_ubigeo_2");
-    var getDistritos = getDistritosFactory("#id_ubigeo_2");
+    var getProvincias = getProvinciasFactory("#id_location_1", "#id_location_2");
+    var getDistritos = getDistritosFactory("#id_location_2");
 
-    $('#id_ubigeo_0').on('change', function(){
+    $('#id_location_0').on('change', function(){
         getProvincias(this.value);
     });
-    $('#id_ubigeo_1').on('change', function(){
+    $('#id_location_1').on('change', function(){
         getDistritos(this.value);
     });
 });
