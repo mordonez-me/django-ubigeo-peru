@@ -64,36 +64,10 @@ class UbigeoField(forms.MultiValueField):
 
     def compress(self, data_list):
         if data_list:
-            return data_list[2]
+            if data_list[2]:
+                return data_list[2]
+            elif data_list[1]:
+                return data_list[1]
+            elif data_list[0]:
+                return data_list[0]
         return None
-
-    def prepare_value(self, value):
-        if value is None:
-            return None
-        ubigeo = Ubigeo.objects.get(pk=value)
-        provinces = Ubigeo.objects.none()
-        districts = Ubigeo.objects.none()
-        regions = Ubigeo.objects.filter(
-                political_division=Ubigeo.POLITICAL_DIVISION_CHOICES.REGION,
-                )
-        if ubigeo.human_political_division == 'Region':
-            provinces = Ubigeo.objects.filter(
-                parent=ubigeo,
-                )
-        if ubigeo.human_political_division == 'Provincia':
-            provinces = Ubigeo.objects.filter(
-                parent=ubigeo.parent,
-                )
-        if ubigeo.human_political_division == 'Distrito':
-            provinces = Ubigeo.objects.filter(
-                parent=ubigeo.parent.parent,
-                )
-            districts = Ubigeo.objects.filter(
-                parent=ubigeo.parent,
-                )
-        self.fields[1].queryset = provinces
-        self.fields[2].queryset = districts
-        self.widget.provinces = self.fields[1]._get_choices()
-        self.widget.districts = self.fields[2]._get_choices()
-        self.widget.decompress(value)
-        return value
