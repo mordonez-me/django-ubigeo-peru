@@ -7,7 +7,7 @@ class Incident(models.Model):
     location = models.ForeignKey(Ubigeo,
                                  related_name='location',
                                  blank=True,
-                                 null=True,)
+                                 null=True, )
 
     def __unicode__(self):
         return "id: %s | location: %s" % (self.pk, self.location)

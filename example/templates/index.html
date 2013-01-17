@@ -5,7 +5,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </head>
 <body>
-  <form method="POST" action=".">
+  <form method="POST" action="/">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit">
@@ -22,10 +22,10 @@
       {% endif %}
           <tr>
             <td>{{ incident.id }}</td>
-            <td><a href='{% url incident_detail incident.id %}'> {{ incident.location.name }}</a></td>
+            <td><a href="{% url incident_detail incident.pk %}"> {{ incident.location.name }}</a></td>
             <td>{{ incident.location.human_political_division }}</td>
+            <td><a href="{% url remove_incident incident.pk %}"> Remove</a></td>
           </tr>
-          {{ location }}
       {% if forloop.last %}
         </table>
       {% endif %}
