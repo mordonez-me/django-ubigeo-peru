@@ -29,3 +29,4 @@ pip-log.txt
 # Editors
 *.swp
 \.#*
+.DS_Store
