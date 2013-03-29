@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-
 from django.db import models
 from .helpers import Enumeration
+
 
 class Ubigeo(models.Model):
     name = models.TextField()
@@ -11,7 +11,10 @@ class Ubigeo(models.Model):
         (3, 'DISTRICT', "Distrito"),
         ])
 
-    political_division = models.PositiveSmallIntegerField(choices=POLITICAL_DIVISION_CHOICES,)
+    political_division = models.PositiveSmallIntegerField(
+        choices=POLITICAL_DIVISION_CHOICES,)
+    lat = models.TextField()
+    lon = models.TextField()
     parent = models.ForeignKey('Ubigeo', null=True)
 
     def __repr__(self):
@@ -29,7 +32,7 @@ class Ubigeo(models.Model):
         elif self.political_division == 3:
             return u"Distrito"
         else:
-            return u"No sé"
+            return u""
 
     @staticmethod
     def qualified_name(ubigeo):
@@ -42,7 +45,6 @@ class Ubigeo(models.Model):
             return  u"%s de %s en la %s" % (ubigeo.human_political_division,
                                          ubigeo.name,
                                          Ubigeo.qualified_name(ubigeo.parent),)
-
 
     def __eq__(self, other):
         """Comparar name con name y parents
@@ -62,7 +64,7 @@ class Ubigeo(models.Model):
     @staticmethod
     def guess_political_division_from_code(code):
         if code.pk[0:2] == "00":
-            return "No idea U_U'"
+            return ""
         elif code.pk[2:4] == "00":
             return "Departamento"
         elif code.pk[4:6] == "00":
