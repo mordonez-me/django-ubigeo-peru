@@ -17,7 +17,6 @@ class Migration(DataMigration):
                 )\
             )
         call_command("loaddata", fixture)
-        print fixture
         # Note: Remember to use orm['appname.ModelName'] rather than "from appname.models..."
 
     def backwards(self, orm):
