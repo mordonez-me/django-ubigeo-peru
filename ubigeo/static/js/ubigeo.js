@@ -24,7 +24,7 @@ function getProvinciasFactory(provinces_selector, districts_selector){
         $.getJSON(url, handler);
 
         // Clear Districts
-        var distritos = $(district_selector);
+        var distritos = $(districts_selector);
         distritos.find('option').remove();
         distritos.append(district_nullcase);
     };
