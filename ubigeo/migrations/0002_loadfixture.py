@@ -13,7 +13,7 @@ class Migration(DataMigration):
             os.path.join(\
                 os.path.dirname(\
                     os.path.realpath(__file__)\
-                    ), "../fixtures/initial_data.json"\
+                    ), "initial_data.json"\
                 )\
             )
         call_command("loaddata", fixture)
