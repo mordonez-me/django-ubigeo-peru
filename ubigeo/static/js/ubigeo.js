@@ -55,13 +55,13 @@ function getDistritosFactory(district_selector){
 
 
 $(document).ready(function(){
-    var getProvincias = getProvinciasFactory("#id_location_1", "#id_location_2");
-    var getDistritos = getDistritosFactory("#id_location_2");
+    var getProvincias = getProvinciasFactory("#id_ubigeo_1", "#id_ubigeo_2");
+    var getDistritos = getDistritosFactory("#id_ubigeo_2");
 
-    $('#id_location_0').on('change', function(){
+    $('#id_ubigeo_0').on('change', function(){
         getProvincias(this.value);
     });
-    $('#id_location_1').on('change', function(){
+    $('#id_ubigeo_1').on('change', function(){
         getDistritos(this.value);
     });
 });
